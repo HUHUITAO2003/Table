@@ -14,33 +14,24 @@
         integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js.js"></script>
     <link href="css.css" rel="stylesheet">
 </head>
 
 <body>
     <div class="container">
-        <h2>Dipendenti</h2>
+        <h2 class="elimina">Dipendenti</h2>
         <button type="button" id="titolo" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Aggiungi</button><br><br>
         <table class="table table-striped table-bordered text-center">
+            <thead>
+              <tr>
+                <th class="col-2">ID</th>
+                <th class="col-4">Nome</th>
+                <th class="col-4">Cognome</th>
+                <th class="col-2">Azioni</th>
+            </tr>
+            </thead>
             <tbody>
-                <tr>
-                    <th class="col-2">ID</th>
-                    <th class="col-4">Nome</th>
-                    <th class="col-4">Cognome</th>
-                    <th class="col-2">Azioni</th>
-                </tr>
-                <tr>
-                    <td>ID</td>
-                    <td>Nome</td>
-                    <td>Cognome</td>
-                    <td>Azioni</td>
-                </tr>
-                <tr>
-                    <td>ID</td>
-                    <td>Nome</td>
-                    <td>Cognome</td>
-                    <td>Azioni</td>
-                </tr>
             </tbody>
         </table>
     </div>
