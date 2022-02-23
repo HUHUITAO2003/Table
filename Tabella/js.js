@@ -53,7 +53,7 @@ $(function () {
       row = row + "<td>" + dati[i].id + "</td>";
       row = row + "<td>" + dati[i].firstName + "</td>";
       row = row + "<td>" + dati[i].lastName + "</td>";
-      row = row + "<td data-id = " + dati[i].id + "> <button type='button' class='btn btn-danger elimina'>Elimina</button> </td>";
+      row = row + '<td data-id = "' + dati[i].id + '"> <button type="button" class="btn btn-primary edit" data-bs-toggle="modal" data-bs-target="#editmodal" data-bs-whatever="@mdo">Modifica</button><button type="button" class="btn btn-danger elimina">Elimina</button> </td>';
       row = row + "</tr>";
     }
     $("tbody").html(row);
@@ -71,21 +71,55 @@ $(function () {
     
     dati.push({
       "id": NextID,
-      "birthDate": "1953-09-01",
+      "birthDate": "",
       "firstName": nome,
       "lastName": cognome,
-      "gender": "M",
+      "gender": "Trans",
       "hireDate": "1986-06-25",
     })
     NextID++;
     printTable();
   });
 
-  $(".elimina").bind("click", function (event) {
+  $("body").on("click", ".elimina", function (event) {
     for(var i = 0; i < dati.length ; i++){
-      if(dati[i]==event.data(id)){
-        alert(event.data(id));
+      if(dati[i].id==$(this).parent().attr("data-id")){
         dati.splice(i,1);
+        break;
+      }
+    }
+    printTable();
+  });
+
+  $("body").on("click", ".edit", function (event) {
+
+    for(var i = 0; i < dati.length ; i++){
+      if(dati[i].id==$(this).parent().attr("data-id")){
+        $("#editnome").val(dati[i].firstName);
+        $("#editcognome").val(dati[i].lastName);
+        $("#salva").val(dati[i].id);
+        break;
+      }
+    }
+    printTable();
+  });
+
+
+  $("#salva").bind("click", function (event) {
+    
+    var nome = $("#editnome").val();
+    var cognome = $("#editcognome").val();
+    for(var i = 0; i < dati.length ; i++){
+      if(dati[i].id==$(this).val()){
+        dati[i]={
+          "id": $(this).val(),
+          "birthDate": "",
+          "firstName": nome,
+          "lastName": cognome,
+          "gender": "Trans",
+          "hireDate": "1986-06-25",
+        }
+        break;
       }
     }
     printTable();

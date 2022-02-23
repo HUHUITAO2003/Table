@@ -6,3 +6,7 @@ h2{
     float: right;
     display: inline-block;
 }
+
+.edit{
+    margin-right: 50px;
+}
