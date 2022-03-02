@@ -1,4 +1,4 @@
-$(function () {
+$(function () {/*
   var dati = [
     {
       "id": 10001,
@@ -43,10 +43,29 @@ $(function () {
 
     }
   ];
+*/
+  var dati;
 
-  var NextID = 10006
+  function getDati(url){
+    $.get( url, function(data) {
+      dati = data;
+      console.log(data);
+      printTable(data['_embedded']['employees']);
+      $("#self").html(data['page']['number']+1);
+      if(data['page']['number']==0){
+        $(".zero").css("display","none");
+      }else{
+        $(".zero").css("display","inline");
+      }
+      if(data['page']['number']+1==data['page']['totalPages']){
+        $(".ultm").css("display","none");
+      }else{
+        $(".ultm").css("display","inline");
+      }
+    })
+  };
 
-  function printTable() {
+  function printTable(dati) {
     var row = "";
     for (var i = 0; i < dati.length; i++) {
       row = row + "<tr>";
@@ -58,11 +77,17 @@ $(function () {
     }
     $("tbody").html(row);
   }
+
   
-  $("body").ready(function () {
-    printTable();
+  $(".pagina").bind("click", function (event) {
+    console.log($(this).attr('id'));
+    getDati(dati['_links'][$(this).attr('id')]['href']);
   });
 
+  $("body").ready(function () {
+    getDati("http://localhost:8080/employees");
+  });
+/*
   $("#aggiungi").bind("click", function (event) {
     
 
@@ -124,5 +149,5 @@ $(function () {
     }
     printTable();
   });
-
+*/
 });
