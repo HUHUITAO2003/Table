@@ -53,7 +53,7 @@ $(function () {
       data: JSON.stringify(person),
       contentType: "application/json; charset=utf-8",
       dataType: "json",
-      success: function(data){getDati(dati['_links']['last']['href']);},
+      success: function(data){getDati(index+"?page="+dati['page']['number']+"&size=20");},
       error: function(errMsg) {console.log(errMsg);}
   });
   };
